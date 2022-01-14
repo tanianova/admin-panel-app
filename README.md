@@ -9,4 +9,4 @@
 * добавление персонажей в store и базу данных
 * фильтрация и отображение отфильтрованных персонажей
 * combineReducers, createSelector(для оптимизации рендера одинаковых компонентов)
-* store enhancers
+* store enhancers(для расширения любой части store), middleware(для расширения dispatch)
