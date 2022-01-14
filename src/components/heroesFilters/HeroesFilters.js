@@ -3,10 +3,8 @@ import { useEffect } from "react";
 import classNames from "classnames";
 import { useHttp } from "../../hooks/http.hook";
 import {
-  filtersFetching,
-  filtersFetched,
-  filtersFetchingError,
-  activeFilterChanged,
+  fetchFilters,
+  activeFilterChanged
 } from "../../actions";
 import Spinner from "../spinner/Spinner";
 
@@ -17,12 +15,9 @@ const HeroesFilters = () => {
   const dispatch = useDispatch();
   const { request } = useHttp();
 
-  // Запрос на сервер для получения фильтров и последовательной смены состояния
+  // Запрос на сервер для получения фильтров  
   useEffect(() => {
-    dispatch(filtersFetching());
-    request("http://localhost:3001/filters")
-      .then((data) => dispatch(filtersFetched(data)))
-      .catch(() => dispatch(filtersFetchingError()));
+    dispatch(fetchFilters(request))
 
     // eslint-disable-next-line
   }, []);
