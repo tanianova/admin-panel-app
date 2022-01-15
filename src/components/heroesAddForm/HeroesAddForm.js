@@ -3,7 +3,8 @@ import { useHttp } from "../../hooks/http.hook";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-import { heroCreated } from "../../actions";
+// import { heroCreated } from "../../actions";
+import { heroCreated } from "../heroesList/heroesSlice";
 import { useSelector } from "react-redux";
 
 

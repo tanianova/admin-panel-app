@@ -11,4 +11,4 @@
 * combineReducers, createSelector(для оптимизации рендера одинаковых компонентов)
 * store enhancers(для расширения любой части store), middleware(для расширения dispatch)
 * redux thunk (позволяет в качестве действий отправлять не объекты,а функции)
-* Redux Toolkit: configureStore, createAction,createReducer
+* Redux Toolkit: configureStore, createAction,createReducer, createSlice

@@ -1,4 +1,10 @@
-import { createAction } from "@reduxjs/toolkit";
+import {
+  heroesFetched,
+  heroesFetching,
+  heroesFetchingError,
+} from "../components/heroesList/heroesSlice";
+
+import { filtersFetching, filtersFetched, filtersFetchingError} from "../components/heroesFilters/filtersSlice";
 
 export const fetchHeroes = (request) => (dispatch) => {
   dispatch(heroesFetching());
@@ -20,7 +26,7 @@ export const fetchFilters = (request) => (dispatch) => {
 //   };
 // };
 
-export const heroesFetching =createAction("HEROES_FETCHING")
+// export const heroesFetching =createAction("HEROES_FETCHING")
 
 // export const heroesFetched = (heroes) => {
 //   return {
@@ -29,33 +35,33 @@ export const heroesFetching =createAction("HEROES_FETCHING")
 //   };
 // };
 
-export const heroesFetched = createAction("HEROES_FETCHED")
+// export const heroesFetched = createAction("HEROES_FETCHED")
 
 // export const heroesFetchingError = () => {
 //   return {
 //     type: "HEROES_FETCHING_ERROR",
 //   };
 // };
-export const heroesFetchingError=createAction("HEROES_FETCHING_ERROR")
+// export const heroesFetchingError=createAction("HEROES_FETCHING_ERROR")
 
-export const filtersFetching = () => {
-  return {
-    type: "FILTERS_FETCHING",
-  };
-};
+// export const filtersFetching = () => {
+//   return {
+//     type: "FILTERS_FETCHING",
+//   };
+// };
 
-export const filtersFetched = (filters) => {
-  return {
-    type: "FILTERS_FETCHED",
-    payload: filters,
-  };
-};
+// export const filtersFetched = (filters) => {
+//   return {
+//     type: "FILTERS_FETCHED",
+//     payload: filters,
+//   };
+// };
 
-export const filtersFetchingError = () => {
-  return {
-    type: "FILTERS_FETCHING_ERROR",
-  };
-};
+// export const filtersFetchingError = () => {
+//   return {
+//     type: "FILTERS_FETCHING_ERROR",
+//   };
+// };
 
 // export const activeFilterChanged = (filter) => (dispatch)=>{
 //    setTimeout(()=>{
@@ -65,12 +71,12 @@ export const filtersFetchingError = () => {
 //   })
 //    },1000)
 // };
-export const activeFilterChanged = (filter) => {
-  return {
-    type: "ACTIVE_FILTER_CHANGED",
-    payload: filter,
-  };
-};
+// export const activeFilterChanged = (filter) => {
+//   return {
+//     type: "ACTIVE_FILTER_CHANGED",
+//     payload: filter,
+//   };
+// };
 
 // export const heroCreated = (hero) => {
 //   return {
@@ -78,7 +84,7 @@ export const activeFilterChanged = (filter) => {
 //     payload: hero,
 //   };
 // };
-export const heroCreated=createAction('HERO_CREATED')
+// export const heroCreated=createAction('HERO_CREATED')
 
 // export const heroDeleted = (id) => {
 //   return {
@@ -86,4 +92,4 @@ export const heroCreated=createAction('HERO_CREATED')
 //     payload: id,
 //   };
 // };
-export const heroDeleted = createAction('HERO_DELETED')
+// export const heroDeleted = createAction('HERO_DELETED')

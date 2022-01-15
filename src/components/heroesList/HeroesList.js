@@ -4,16 +4,14 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { createSelector } from "reselect";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  fetchHeroes,
-  heroDeleted
-} from "../../actions";
+import { fetchHeroes } from "../../actions";
+import { heroDeleted } from "./heroesSlice";
+
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 import "./heroesList.scss";
 
 const HeroesList = () => {
-
   //мемоизация,чтобы не было повторного рендера при нажатии на одну и ту же кнопку
   const filteredHeroesSelector = createSelector(
     (state) => state.filters.activeFilter,
@@ -35,15 +33,16 @@ const HeroesList = () => {
   //     );
   //   }
   // });
-  const filteredHeroes = useSelector(filteredHeroesSelector)
-  const heroesLoadingStatus = useSelector((state) => state.heroes.heroesLoadingStatus);
+  const filteredHeroes = useSelector(filteredHeroesSelector);
+  const heroesLoadingStatus = useSelector(
+    (state) => state.heroes.heroesLoadingStatus
+  );
   const dispatch = useDispatch();
   const { request } = useHttp();
 
   useEffect(() => {
     // dispatch(heroesFetching());
     dispatch(fetchHeroes(request));
-     
 
     // eslint-disable-next-line
   }, []);
@@ -53,8 +52,8 @@ const HeroesList = () => {
   const onDelete = useCallback(
     (id) => {
       // Удаление персонажа по его id
-        request(`http://localhost:3001/heroes/${id}`, "DELETE")
-      // request(`http://localhost:3001/heroes/${id}`)
+      request(`http://localhost:3001/heroes/${id}`, "DELETE")
+        // request(`http://localhost:3001/heroes/${id}`)
         // .then((data) => console.log(data, "deleted"))
         .then(() => dispatch(heroDeleted(id)))
         .catch((err) => console.log(err));

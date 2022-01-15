@@ -2,10 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import classNames from "classnames";
 import { useHttp } from "../../hooks/http.hook";
-import {
-  fetchFilters,
-  activeFilterChanged
-} from "../../actions";
+import { fetchFilters } from "../../actions";
+import { activeFilterChanged } from "./filtersSlice";
 import Spinner from "../spinner/Spinner";
 
 const HeroesFilters = () => {
@@ -15,9 +13,9 @@ const HeroesFilters = () => {
   const dispatch = useDispatch();
   const { request } = useHttp();
 
-  // Запрос на сервер для получения фильтров  
+  // Запрос на сервер для получения фильтров
   useEffect(() => {
-    dispatch(fetchFilters(request))
+    dispatch(fetchFilters(request));
 
     // eslint-disable-next-line
   }, []);
@@ -57,11 +55,6 @@ const HeroesFilters = () => {
         <p className="card-text">Отфильтруйте героев по элементам</p>
         <div className="btn-group">
           {elements}
-          {/* <button className="btn btn-outline-dark active">Все</button>
-          <button className="btn btn-danger">Огонь</button>
-          <button className="btn btn-primary">Вода</button>
-          <button className="btn btn-success">Ветер</button>
-          <button className="btn btn-secondary">Земля</button> */}
         </div>
       </div>
     </div>
