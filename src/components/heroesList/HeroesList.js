@@ -53,8 +53,8 @@ const HeroesList = () => {
   const onDelete = useCallback(
     (id) => {
       // Удаление персонажа по его id
-      //   request(`http://localhost:3001/heroes/${id}`, "DELETE")
-      request(`http://localhost:3001/heroes/${id}`)
+        request(`http://localhost:3001/heroes/${id}`, "DELETE")
+      // request(`http://localhost:3001/heroes/${id}`)
         // .then((data) => console.log(data, "deleted"))
         .then(() => dispatch(heroDeleted(id)))
         .catch((err) => console.log(err));

@@ -29,8 +29,8 @@ const HeroesAddForm = () => {
     };
 
     // // отправляем героя на сервер
-    // request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
-    request("http://localhost:3001/heroes")
+    request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
+    // request("http://localhost:3001/heroes")
       //  .then(res=>console.log(res,'отправка успешна'))
       .then(dispatch(heroCreated(newHero)))
       .catch((err) => console.log(err));
