@@ -1,10 +1,11 @@
 import { useHttp } from "../../hooks/http.hook";
 import { useCallback, useEffect } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchHeroes } from "../../actions";
+// import { fetchHeroes } from "../../actions";
+import { fetchHeroes } from "./heroesSlice";
 import { heroDeleted } from "./heroesSlice";
 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
@@ -42,7 +43,7 @@ const HeroesList = () => {
 
   useEffect(() => {
     // dispatch(heroesFetching());
-    dispatch(fetchHeroes(request));
+    dispatch(fetchHeroes());
 
     // eslint-disable-next-line
   }, []);

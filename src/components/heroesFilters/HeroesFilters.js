@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import classNames from "classnames";
 import { useHttp } from "../../hooks/http.hook";
-import { fetchFilters } from "../../actions";
+// import { fetchFilters } from "../../actions";
+import { fetchFilters } from "./filtersSlice";
 import { activeFilterChanged } from "./filtersSlice";
 import Spinner from "../spinner/Spinner";
 
@@ -11,11 +12,11 @@ const HeroesFilters = () => {
     (state) => state.filters
   );
   const dispatch = useDispatch();
-  const { request } = useHttp();
+  // const { request } = useHttp();
 
   // Запрос на сервер для получения фильтров
   useEffect(() => {
-    dispatch(fetchFilters(request));
+    dispatch(fetchFilters());
 
     // eslint-disable-next-line
   }, []);
@@ -53,9 +54,7 @@ const HeroesFilters = () => {
     <div className="card shadow-lg mt-4">
       <div className="card-body">
         <p className="card-text">Отфильтруйте героев по элементам</p>
-        <div className="btn-group">
-          {elements}
-        </div>
+        <div className="btn-group">{elements}</div>
       </div>
     </div>
   );
