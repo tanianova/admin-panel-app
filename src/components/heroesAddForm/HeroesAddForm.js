@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { useHttp } from "../../hooks/http.hook";
-import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-// import { heroCreated } from "../../actions";
-import { heroCreated } from "../heroesList/heroesSlice";
 import { useSelector } from "react-redux";
 import { selectAll } from "../heroesFilters/filtersSlice";
+import { useCreateHeroMutation } from "../../api/apiSlice";
 import store from "../../store";
-
 
 const HeroesAddForm = () => {
   //состояние для контроля формы
@@ -16,10 +12,10 @@ const HeroesAddForm = () => {
   const [heroDescr, setHeroDescr] = useState("");
   const [heroElement, setHeroElement] = useState("");
 
-  const {  filtersLoadingStatus } = useSelector((state) => state.filters);
-  const filters = selectAll(store.getState())
-  const dispatch = useDispatch();
-  const { request } = useHttp();
+  const [createHero, { isLoading }] = useCreateHeroMutation();
+
+  const { filtersLoadingStatus } = useSelector((state) => state.filters);
+  const filters = selectAll(store.getState());
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -32,12 +28,7 @@ const HeroesAddForm = () => {
       element: heroElement,
     };
 
-    // // отправляем героя на сервер
-    request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
-    // request("http://localhost:3001/heroes")
-      //  .then(res=>console.log(res,'отправка успешна'))
-      .then(dispatch(heroCreated(newHero)))
-      .catch((err) => console.log(err));
+    createHero(newHero).unwrap();
 
     //очищаем форму после отправки
     setHeroName("");
@@ -46,7 +37,7 @@ const HeroesAddForm = () => {
   };
 
   const renderFilter = (filters, status) => {
-    if (status === "loading") {
+    if (isLoading) {
       return <option>Загрузка элементов</option>;
     } else if (status === "error") {
       return <option>Ошибка загрузки</option>;
@@ -110,9 +101,8 @@ const HeroesAddForm = () => {
           value={heroElement}
           onChange={(e) => setHeroElement(e.target.value)}
         >
-          
           <option>Я владею элементом...</option>
-          {renderFilter(filters,filtersLoadingStatus)}
+          {renderFilter(filters, filtersLoadingStatus)}
           {/* <option value="fire">Огонь</option>
           <option value="water">Вода</option>
           <option value="wind">Ветер</option>

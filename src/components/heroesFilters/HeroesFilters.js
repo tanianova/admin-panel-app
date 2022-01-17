@@ -1,20 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import classNames from "classnames";
-import { fetchFilters, activeFilterChanged,selectAll } from "./filtersSlice";
-import store from '../../store';
+import { fetchFilters, activeFilterChanged, selectAll } from "./filtersSlice";
+import store from "../../store";
 
 import Spinner from "../spinner/Spinner";
 
 const HeroesFilters = () => {
-  const {  filtersLoadingStatus, activeFilter } = useSelector(
+  const { filtersLoadingStatus, activeFilter } = useSelector(
     (state) => state.filters
   );
   const dispatch = useDispatch();
   const filters = selectAll(store.getState());
   useEffect(() => {
     dispatch(fetchFilters());
-
     // eslint-disable-next-line
   }, []);
 
